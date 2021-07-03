@@ -1,0 +1,37 @@
+<h3>Productos</h3>
+<table class="table table-hover" id="aca">
+  <thead>
+    <tr class="table-primary">
+      <th>ID</th>
+      <th scope="col">Codigo</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Precio</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let producto of (productos$ |async)">
+      <td>{{producto.id}}</td>
+      <td>{{producto.codigo}}</td>
+      <td>
+        <div *ngIf="producto.estado; else elseBlock">Activo</div>
+        <ng-template #elseBlock>Inactivo.</ng-template>
+      </td>
+      <td>{{producto.producto}}</td>
+      <td>{{producto.descripcion}}</td>
+      <td>{{producto.idCategoria}}</td>
+      <td>{{producto.precio | currency:'COP':"$"}}</td>
+
+      <td>
+       <a (click)=editCustomer(producto)>edit</a>
+        <br>
+       <a (click)=deleteProducto(producto)>delete</a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
